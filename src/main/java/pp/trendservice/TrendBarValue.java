@@ -3,6 +3,7 @@ package pp.trendservice;
 import java.math.BigDecimal;
 
 /**
+ * @Immutable
  * @author Pavel Polushkin
  */
 public class TrendBarValue {

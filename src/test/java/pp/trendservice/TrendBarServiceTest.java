@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
 import pp.trendservice.dao.ITrendBarValueDao;
+import pp.trendservice.service.TrendBarService;
 
 import java.math.BigDecimal;
 import java.util.Date;

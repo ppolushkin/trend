@@ -3,6 +3,7 @@ package pp.trendservice;
 import java.util.Currency;
 
 /**
+ * @Immutable
  * @author Pavel Polushkin
  */
 public class Symbol {

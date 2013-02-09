@@ -11,8 +11,13 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
         <constructor-arg name="createTableOnStartup" value="true"/>
     </bean>
 
-    <bean id="trend_service" class="pp.trendservice.TrendBarService">
+    <bean id="trend_service" class="pp.trendservice.service.TrendBarService">
         <constructor-arg name="dao" ref="dao"/>
+    </bean>
+
+    <bean id="async_trend_service" class="pp.trendservice.service.AsyncTrendBarService">
+        <constructor-arg name="dao" ref="dao"/>
+        <constructor-arg name="queueSize" value="10"/>
     </bean>
 
 </beans>

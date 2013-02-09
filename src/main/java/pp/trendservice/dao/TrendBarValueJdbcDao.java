@@ -8,7 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/**           
+ * @ThreadSafe
  * @author Pavel Polushkin
  */
 public class TrendBarValueJdbcDao implements ITrendBarValueDao {

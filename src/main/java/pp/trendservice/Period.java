@@ -3,6 +3,7 @@ package pp.trendservice;
 import java.util.Calendar;
 
 /**
+ * @ThreadSafe
  * @author Pavel Polushkin
  */
 public enum Period {
@@ -10,6 +11,7 @@ public enum Period {
     MINUTE {
         @Override
         public long getPeriodStartTime(long time) {
+            Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
             calendar.set(Calendar.MILLISECOND, 0);
             calendar.set(Calendar.SECOND, 0);
@@ -17,6 +19,7 @@ public enum Period {
         }
         @Override
         public long getNextPeriodStartTime(long time) {
+            Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
             calendar.set(Calendar.MILLISECOND, 0);
             calendar.set(Calendar.SECOND, 0);
@@ -27,6 +30,7 @@ public enum Period {
     HOUR {
         @Override
         public long getPeriodStartTime(long time) {
+            Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
             calendar.set(Calendar.MILLISECOND, 0);
             calendar.set(Calendar.SECOND, 0);
@@ -36,6 +40,7 @@ public enum Period {
         }
         @Override
         public long getNextPeriodStartTime(long time) {
+            Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
             calendar.set(Calendar.MILLISECOND, 0);
             calendar.set(Calendar.SECOND, 0);
@@ -47,6 +52,7 @@ public enum Period {
     DAY {
         @Override
         public long getPeriodStartTime(long time) {
+            Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
             calendar.set(Calendar.MILLISECOND, 0);
             calendar.set(Calendar.SECOND, 0);
@@ -57,6 +63,7 @@ public enum Period {
         }
         @Override
         public long getNextPeriodStartTime(long time) {
+            Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(time);
             calendar.set(Calendar.MILLISECOND, 0);
             calendar.set(Calendar.SECOND, 0);
@@ -74,7 +81,5 @@ public enum Period {
     public abstract long getPeriodStartTime(long time);
 
     public abstract long getNextPeriodStartTime(long time);
-
-    private static Calendar calendar = Calendar.getInstance();
 
 }

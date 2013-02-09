@@ -3,6 +3,8 @@ package pp.trendservice;
 import java.math.BigDecimal;
 
 /**
+ * @ThreadSafe
+ * @GuardedBy this
  * @author Pavel Polushkin
  */
 public class TransientTrendBarValue {
@@ -28,7 +30,7 @@ public class TransientTrendBarValue {
         this.closePrice = openPrice;
     }
 
-    public void updatePrices(BigDecimal price) {
+    public synchronized void updatePrices(BigDecimal price) {
         if(minPrice.compareTo(price) > 0) {
             minPrice = price;
         }
@@ -59,19 +61,19 @@ public class TransientTrendBarValue {
         return openPrice;
     }
 
-    public BigDecimal getMinPrice() {
+    public synchronized BigDecimal getMinPrice() {
         return minPrice;
     }
 
-    public BigDecimal getMaxPrice() {
+    public synchronized BigDecimal getMaxPrice() {
         return maxPrice;
     }
 
-    public BigDecimal getClosePrice() {
+    public synchronized BigDecimal getClosePrice() {
         return closePrice;
     }
 
-    public TrendBarValue toTrendBarValue() {
+    public synchronized TrendBarValue toTrendBarValue() {
         return new TrendBarValue(symbol, period, startTime, openPrice, minPrice, maxPrice, closePrice);
     }
 
