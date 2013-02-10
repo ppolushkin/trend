@@ -19,9 +19,9 @@ public class TrendBarServiceTest {
 
     private static ITrendBarValueDao dao;
 
-    private static Symbol usdEur = new Symbol("USD", "EUR");
+    private static Symbol usdEur = Symbol.getInstance("USDEUR");
 
-    private static Symbol jpyEur = new Symbol("JPY", "EUR");
+    private static Symbol jpyEur = Symbol.getInstance("JPYEUR");
 
     @Before
     public void prepare() {

@@ -4,30 +4,43 @@ import pp.trendservice.*;
 import pp.trendservice.dao.ITrendBarValueDao;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.*;
 
 /**
+ * Trend bar service implemented as "Bonus" task. Quotes submits and processes in different threads.
+ *
  * @ThreadSafe
  * @author Pavel Polushkin
  */
 public class AsyncTrendBarService implements ITrendBarService {
 
-    private final ExecutorService executor;
+    private final ConcurrentMap<String, TransientTrendBarValue> transientValues;
 
-    private final Map<String, TransientTrendBarValue> transientValues;
+    private final Map<Symbol, ExecutorService> executors;
 
     private final ITrendBarValueDao dao;
 
-    public AsyncTrendBarService(ITrendBarValueDao dao, int queueSize) {
+    private boolean terminated = false;
+
+    public AsyncTrendBarService(ITrendBarValueDao dao) {
         this.dao = dao;
         transientValues = new ConcurrentHashMap<String, TransientTrendBarValue>();
-        executor = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, new ArrayBlockingQueue<Runnable>(queueSize));
+        executors =  new HashMap<Symbol, ExecutorService>();
     }
 
     public void process(Quote quote) {
-        executor.execute(new ProcessQuoteTask(quote));
+        synchronized (executors) {
+            if(terminated) {
+                return;
+            }
+            if(!executors.containsKey(quote.getSymbol())) {
+                executors.put(quote.getSymbol(), Executors.newSingleThreadExecutor());
+            }
+            executors.get(quote.getSymbol()).submit(new ProcessQuoteTask(quote));
+        }
     }
 
     private class ProcessQuoteTask implements Runnable {
@@ -68,7 +81,12 @@ public class AsyncTrendBarService implements ITrendBarService {
     }
 
     public void stop() {
-        executor.shutdown();
+        synchronized (executors) {
+            terminated = true;
+            for(ExecutorService executor: executors.values()) {
+                executor.shutdown();
+            }
+        }
     }
 
     private TransientTrendBarValue get(Symbol symbol, Period period) {

@@ -4,14 +4,14 @@ import pp.trendservice.*;
 import pp.trendservice.dao.ITrendBarValueDao;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
- * @ThreadSafe
  * @author Pavel Polushkin
+ * @ThreadSafe
  */
 public class TrendBarService implements ITrendBarService {
 
@@ -19,17 +19,14 @@ public class TrendBarService implements ITrendBarService {
 
     private final Map<String, TransientTrendBarValue> transientValues;
 
-    private final Object processLock = new Object();
-
-    //todo: modify
     public TrendBarService(ITrendBarValueDao dao) {
         this.dao = dao;
-        transientValues = new HashMap<String, TransientTrendBarValue>();
+        transientValues = new ConcurrentHashMap<String, TransientTrendBarValue>();
     }
 
     public void process(Quote quote) {
-        synchronized (processLock) {
-            Symbol symbol = quote.getSymbol();
+        Symbol symbol = quote.getSymbol();
+        synchronized (symbol) {
             for (Period period : Period.values()) {
                 TransientTrendBarValue transientValue = get(symbol, period);
                 if (transientValue == null) {

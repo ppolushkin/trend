@@ -20,7 +20,7 @@ public class Demo {
         //ITrendBarService service  = (TrendBarService) context.getBean("trend_service");
         AsyncTrendBarService service = (AsyncTrendBarService) context.getBean("async_trend_service");
 
-        Symbol eurUsd = Symbol.createByShortName("EURUSD");
+        Symbol eurUsd = Symbol.getInstance("EURUSD");
         Quote quote1 = new Quote(minuteAgo, eurUsd, BigDecimal.valueOf(1.25));
         Quote quote2 = new Quote(now, eurUsd, BigDecimal.valueOf(1));
 

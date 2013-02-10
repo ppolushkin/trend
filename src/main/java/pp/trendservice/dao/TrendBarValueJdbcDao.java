@@ -109,7 +109,7 @@ public class TrendBarValueJdbcDao implements ITrendBarValueDao {
 
             while (rs.next()) {
                 TrendBarValue value = new TrendBarValue(
-                        Symbol.createByShortName(rs.getString("symbol")),
+                        Symbol.getInstance(rs.getString("symbol")),
                         Period.valueOf(rs.getString("period")),
                         rs.getLong("time"),
                         rs.getBigDecimal("open_price"),
