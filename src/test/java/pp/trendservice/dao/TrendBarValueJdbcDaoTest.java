@@ -56,7 +56,7 @@ public class TrendBarValueJdbcDaoTest {
     }
 
     @Test
-    public void testSuccessGetValues() {
+    public void getValues() {
         List<TrendBarValue> list = dao.getValues(usdEur, Period.MINUTE, ts1, ts2);
         assertEquals(2, list.size());
         assertEquals(v1, list.get(0));
@@ -69,7 +69,7 @@ public class TrendBarValueJdbcDaoTest {
     }
 
     @Test
-    public void testSuccessGetValues2() {
+    public void getValues2() {
         List<TrendBarValue> list = dao.getValues(usdEur, Period.MINUTE, ts1, ts1 + 1);
         assertEquals(1, list.size());
         assertEquals(v1, list.get(0));
@@ -80,31 +80,16 @@ public class TrendBarValueJdbcDaoTest {
     }
 
     @Test
-    public void testWrongSymbol() {
-        List<TrendBarValue> list = dao.getValues(jpyEur, Period.MINUTE, ts1, ts2);
-        assertEquals(0, list.size());
-
-        list = dao.getValues(jpyEur, Period.MINUTE, ts1);
-        assertEquals(0, list.size());
+    public void getValues_for_absent_records_return_empty_list() {
+        //wrong symbol
+        assertEquals(0, dao.getValues(jpyEur, Period.MINUTE, ts1).size());
+        assertEquals(0, dao.getValues(jpyEur, Period.MINUTE, ts1, ts2).size());
+        //wrong period
+        assertEquals(0, dao.getValues(usdEur, Period.HOUR, ts1).size());
+        assertEquals(0, dao.getValues(usdEur, Period.HOUR, ts1, ts2).size());
+        //wrong time interval
+        assertEquals(0, dao.getValues(usdEur, Period.HOUR, ts1 - 5, ts1 - 4).size());
+        assertEquals(0, dao.getValues(usdEur, Period.HOUR, ts2 + 1).size());
     }
-
-    @Test
-    public void testWrongPeriod() {
-        List<TrendBarValue> list = dao.getValues(usdEur, Period.HOUR, ts1, ts2);
-        assertEquals(0, list.size());
-
-        list = dao.getValues(usdEur, Period.HOUR, ts1);
-        assertEquals(0, list.size());
-    }
-
-    @Test
-    public void testWrongInterval() {
-        List<TrendBarValue> list = dao.getValues(usdEur, Period.HOUR, ts1 - 5, ts1 - 4);
-        assertEquals(0, list.size());
-
-        list = dao.getValues(usdEur, Period.HOUR, ts2 + 1);
-        assertEquals(0, list.size());
-    }
-
 
 }

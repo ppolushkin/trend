@@ -3,8 +3,11 @@ package pp.trendservice;
 import java.math.BigDecimal;
 
 /**
- * @ThreadSafe
- * @GuardedBy this
+ * Transient values that stores costs for given Symbol, Period and time before given period ends.
+ * It can be used to create {@link TrendBarValue} by {@link #toTrendBarValue()}
+ *
+ * Class is thread safe.
+ *
  * @author Pavel Polushkin
  */
 public class TransientTrendBarValue {
@@ -16,7 +19,8 @@ public class TransientTrendBarValue {
     private final long startTime, nextPeriodTime;
 
     private final BigDecimal openPrice;
-    
+
+//  GuardedBy this
     private BigDecimal minPrice, maxPrice, closePrice;
 
     public TransientTrendBarValue(Quote quote, Period period) {

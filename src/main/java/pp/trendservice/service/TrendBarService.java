@@ -10,8 +10,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 
 /**
+ * Basic(not bonus) Trend bar service implementation.
+ *
  * @author Pavel Polushkin
- * @ThreadSafe
+ * This class is thread safe
  */
 public class TrendBarService implements ITrendBarService {
 

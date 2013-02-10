@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * @Immutable
+ * Class is immutable
  * @author Pavel Polushkin
  */
 public class Quote {

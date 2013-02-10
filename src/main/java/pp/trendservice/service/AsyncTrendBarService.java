@@ -10,9 +10,9 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 /**
- * Trend bar service implemented as "Bonus" task. Quotes submits and processes in different threads.
+ * Asynchronous(bonus) Trend bar service implementation. Quotes processes by other threads than submits.
  *
- * @ThreadSafe
+ * This class is thread safe
  * @author Pavel Polushkin
  */
 public class AsyncTrendBarService implements ITrendBarService {

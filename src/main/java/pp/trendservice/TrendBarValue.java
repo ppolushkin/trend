@@ -3,7 +3,10 @@ package pp.trendservice;
 import java.math.BigDecimal;
 
 /**
- * @Immutable
+ * Costs for given symbol, period and completed time.
+ *
+ * Class is immutable
+ *
  * @author Pavel Polushkin
  */
 public class TrendBarValue {

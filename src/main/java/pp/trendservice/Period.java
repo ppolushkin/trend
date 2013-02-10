@@ -3,7 +3,7 @@ package pp.trendservice;
 import java.util.Calendar;
 
 /**
- * @ThreadSafe
+ * Class is thread safe
  * @author Pavel Polushkin
  */
 public enum Period {

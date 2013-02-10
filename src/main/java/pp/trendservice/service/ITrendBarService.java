@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * Trend bar service according to task
+ *
  * @author Pavel Polushkin
  */
 public interface ITrendBarService {

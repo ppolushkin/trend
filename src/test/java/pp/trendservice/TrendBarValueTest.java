@@ -32,47 +32,47 @@ public class TrendBarValueTest {
     }
 
     @Test
-    public void testCorrectConstructor() {
+    public void correct_constructor_should_not_fail() {
         new TrendBarValue(symbol, period, correctTime, BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNullPeriodConstructor() {
-        new TrendBarValue(symbol, null, correctTime, BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testNullSymbolConstructor() {
+    public void constructor_with_null_symbol_parameter_should_fail() {
         new TrendBarValue(null, period, correctTime, BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNullOpenPriceConstructor() {
+    public void constructor_with_null_period_parameter_should_fail() {
+        new TrendBarValue(symbol, null, correctTime, BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void constructor_with_null_openPrice_parameter_should_fail() {
         new TrendBarValue(symbol, period, correctTime, null, BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNullMinPriceConstructor() {
+    public void constructor_with_null_minPrice_parameter_should_fail() {
         new TrendBarValue(symbol, period, correctTime, BigDecimal.valueOf(0), null, BigDecimal.valueOf(0), BigDecimal.valueOf(0));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNullMaxPriceConstructor() {
+    public void constructor_with_null_maxPrice_parameter_should_fail() {
         new TrendBarValue(symbol, period, correctTime, BigDecimal.valueOf(0), BigDecimal.valueOf(0), null, BigDecimal.valueOf(0));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testNullClosePriceConstructor() {
+    public void constructor_with_null_closePrice_parameter_should_fail() {
         new TrendBarValue(symbol, period, correctTime, BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0), null);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testIncorrectTime() {
+    public void constructor_with_incorrect_time_period_parameters_should_fail() {
         new TrendBarValue(symbol, period, incorrectTime, BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0), BigDecimal.valueOf(0));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testMinMaxPriceParameters() {
+    public void constructor_with_incorrect_costs_parameters_should_fail() {
         new TrendBarValue(symbol, period, correctTime, BigDecimal.valueOf(0), BigDecimal.valueOf(1), BigDecimal.valueOf(0), BigDecimal.valueOf(0));
     }
 

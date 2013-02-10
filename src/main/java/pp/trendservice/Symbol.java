@@ -7,7 +7,7 @@ import java.util.HashMap;
  * The class is designed so that there's never more than one
  * <code>Symbol</code> instance for any given symbol.
  *
- * @Immutable
+ * Class is immutable
  * @author Pavel Polushkin
  */
 public class Symbol {

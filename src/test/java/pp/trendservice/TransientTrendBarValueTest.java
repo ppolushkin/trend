@@ -38,7 +38,7 @@ public class TransientTrendBarValueTest {
     }
 
     @Test
-    public void testConstructor() {
+    public void correct_constructor_should_not_fail() {
         TransientTrendBarValue value = new TransientTrendBarValue(quote, period);
         assertEquals(quoteSymbol, value.getSymbol());
         assertEquals(periodStartTime, value.getStartTime());
@@ -50,7 +50,7 @@ public class TransientTrendBarValueTest {
     }
 
     @Test
-    public void testUpdatePrices() {
+    public void updatePrice_call_should_update_prices() {
         TransientTrendBarValue value = new TransientTrendBarValue(quote, period);
         value.updatePrices(BigDecimal.valueOf(2));
         value.updatePrices(BigDecimal.valueOf(0.5));
@@ -61,7 +61,7 @@ public class TransientTrendBarValueTest {
     }
 
     @Test
-    public void testToTrendBarValue() {
+    public void toTrendBarValue_call_should_create_correct_TrendByValue_object() {
         TransientTrendBarValue transientValue = new TransientTrendBarValue(quote, period);
         TrendBarValue value = transientValue.toTrendBarValue();
         assertEquals(quoteSymbol, value.getSymbol());

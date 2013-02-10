@@ -8,7 +8,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**           
+/**
+ * Creates connection per query. It would be better to use connection pool here (c3po for example)
+ *
  * @ThreadSafe
  * @author Pavel Polushkin
  */

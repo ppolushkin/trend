@@ -8,6 +8,9 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Demo application. Note that you can use TrendBarService implementation almost same way as AsyncTrendBarService.
+ */
 public class Demo {
 
     private static ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
