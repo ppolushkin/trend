@@ -21,6 +21,7 @@ public class TrendBarService implements ITrendBarService {
 
     private final Object processLock = new Object();
 
+    //todo: modify
     public TrendBarService(ITrendBarValueDao dao) {
         this.dao = dao;
         transientValues = new HashMap<String, TransientTrendBarValue>();
