@@ -10,6 +10,7 @@ import static org.mockito.Mockito.when;
 
 /**
  *
+ * update
  * @author Pavel Polushkin
  */
 public class TrendBarValueTest {
